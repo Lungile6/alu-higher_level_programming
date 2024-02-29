@@ -1,16 +1,13 @@
 #!/usr/bin/python3
 def roman_to_int(roman_string: str):
-    if roman_string is None or roman_string is str() or not roman_string:
+    if roman_string is None or roman_string is not str:
         return 0
     data = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+    numbers = [data[x] for x in roman_string] + [0]
     rep = 0
-    for i in range(len(roman_string) - 1):
-        if roman_string[i] not in data or roman_string[i+1] not in data:
-            return 0  # Invalid Roman numeral characters
-        if data[roman_string[i]] >= data[roman_string[i+1]]:
-            rep += data[roman_string[i]]
+    for i in range(len(numbers) - 1):
+        if numbers[i] >= numbers[i+1]:
+            rep += numbers[i]
         else:
-            rep -= data[roman_string[i]]
-    # Add the value of the last Roman numeral character
-    rep += data[roman_string[-1]]
+            rep -= numbers[i]
     return rep
