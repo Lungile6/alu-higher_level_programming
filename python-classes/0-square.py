@@ -3,5 +3,5 @@ class Square:
     pass
 
 
-mysquare = Square()print(type(mysquare))
-print(mysquare.dict_)
+mysquare = Square()  '#print(type(mysquare))'
+print(mysquare)
