@@ -1,3 +1,3 @@
 #!/bin/bash
-# Send a Get to the spesified URL and display the body of the response.
-curl -s -o /dev/null -w "%{http_code}" "$1" | grep -q 200 && curl -s "$1"
+body=$(curl -s -w "%{http_code}" -o temp_body "$1")
+[ "$(tail -n1 <<<"$body")" -eq 200 ] && cat temp_body; rm temp_body
