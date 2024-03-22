@@ -1,15 +1,3 @@
 #!/bin/bash
-
-# Define the URL and parameters
-URL="$1"
-EMAIL="test@gmail.com"
-SUBJECT="I will always be here for PLD"
-
-# Send a POST request using curl
-response=$(curl -s -X POST "$URL" -d "email=$EMAIL" -d "subject=$SUBJECT")
-
-# Display the response body
-echo "POST params:"
-echo -e "\temail: $EMAIL"
-echo -e "\tsubject: $SUBJECT"
-echo -e "\n$response"
+# Sends a POST request to the passed URL, and displays the body of the response.
+curl -sX POST "$1" -H "Content-Type: application/json" -d '{"email":"test@gmail.com", "subject":"I will always be here for PLD"}'
