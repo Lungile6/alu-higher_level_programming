@@ -1,18 +1,14 @@
 #!/usr/bin/python3
 import urllib.request
-import urllib.parse
+import urllib.error
 import sys
 
 if __name__ == "__main__":
     url = sys.argv[1]  # Get the URL from command-line arguments
-    email = sys.argv[2]  # Get the email from command-line arguments
-
-    # Encode the email parameter
-    data = urllib.parse.urlencode({'email': email}).encode('utf-8')
 
     try:
-        # Send a POST request to the URL
-        with urllib.request.urlopen(url, data) as response:
+        # Send a request to the URL
+        with urllib.request.urlopen(url) as response:
             # Read the content of the response (in bytes)
             content = response.read()
 
@@ -21,5 +17,5 @@ if __name__ == "__main__":
 
             # Display the response body
             print(utf8_content)
-    except urllib.error.URLError as e:
-        print(f"Error: {e.reason}")
+    except urllib.error.HTTPError as e:
+        print(f"Error code: {e.code}")

@@ -1,4 +1,10 @@
 #!/usr/bin/python3
+"""
+1-hbtn_header.py
+Fetches the status from https://alu-intranet.hbtn.io/status using urllib.
+Displays the response header value of X-Request-Id.
+"""
+
 import urllib.request
 import sys
 
