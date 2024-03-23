@@ -1,3 +1,4 @@
 #!/bin/bash
 # Sends a POST request to the passed URL, and displays the body of the response.
-curl -sX POST "$1" -H "Content-Type: application/json" -d '{"email":"test@gmail.com", "subject":"I will always be here for PLD"}'
+curl -s -X POST -H "Content-Type: application/x-www-form-urlencoded" \
+-d "email=test@gmail.com&subject=I will always be here for PLD" "$1"
