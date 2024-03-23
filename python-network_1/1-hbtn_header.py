@@ -1,23 +1,19 @@
 #!/usr/bin/python3
 """
-1-hbtn_header.py
-Fetches the status from https://alu-intranet.hbtn.io/status using urllib.
-Displays the response header value of X-Request-Id.
+This script sends an HTTP request to the specified URL and prints the value of the "X-Request-Id" header.
 """
 
 import urllib.request
 import sys
 
-if __name__ == "__main__":
-    url = sys.argv[1]  # Get the URL from command-line arguments
+if __name__ == '__main__':
+    # Get the URL from the command line argument
+    url = sys.argv[1]
 
-    try:
-        # Send a request to the URL
-        with urllib.request.urlopen(url) as response:
-            # Retrieve the value of the X-Request-Id header
-            x_request_id = response.getheader('X-Request-Id')
+    # Send a request to the URL
+    with urllib.request.urlopen(url) as response:
+        # Retrieve the headers from the response
+        headers = response.info()
 
-            # Display the value
-            print(x_request_id)
-    except urllib.error.URLError as e:
-        print(f"Error: {e.reason}")
+        # Print the value of the "X-Request-Id" header
+        print(headers["X-Request-Id"])
