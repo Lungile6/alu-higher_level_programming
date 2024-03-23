@@ -2,8 +2,9 @@
 import urllib.request
 
 
-# Define the target URL
-url = 'https://alu-intranet.hbtn.io/status'
+if __name__ == "__main__":
+    # Define the target URL
+    url = 'https://alu-intranet.hbtn.io/status'
 
 # Open the URL and retrieve the response
 with urllib.request.urlopen(url) as response:
