@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This script sends an HTTP request to the specified URL and 
+This script sends an HTTP request to the specified URL and
 prints the value of the "X-Request-Id" header.
 """
 
