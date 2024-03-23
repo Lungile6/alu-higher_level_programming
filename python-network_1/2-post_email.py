@@ -1,25 +1,30 @@
 #!/usr/bin/python3
+"""
+This script sends a POST request to the specified URL
+with an email as form data.
+It then prints the response content decoded in utf-8.
+"""
+
 import urllib.request
 import urllib.parse
 import sys
 
-if __name__ == "__main__":
-    url = sys.argv[1]  # Get the URL from command-line arguments
-    email = sys.argv[2]  # Get the email from command-line arguments
+if __name__ == '__main__':
+    # The URL to which the request will be sent
+    url = sys.argv[1]
 
-    # Encode the email parameter
-    data = urllib.parse.urlencode({'email': email}).encode('utf-8')
+    # The form data to be sent with the request, containing an email address
+    values = {"email": sys.argv[2]}
 
-    try:
-        # Send a POST request to the URL
-        with urllib.request.urlopen(url, data) as response:
-            # Read the content of the response (in bytes)
-            content = response.read()
+    # Encode the form data to be sent in the request body
+    data = urllib.parse.urlencode(values)
+    data = data.encode('ascii')  # Convert the encoded string to bytes
 
-            # Decode the content to UTF-8 to get a human-readable string
-            utf8_content = content.decode('utf-8')
+    # Create a Request object with the URL and the encoded data
+    req = urllib.request.Request(url, data)
 
-            # Display the response body
-            print(utf8_content)
-    except urllib.error.URLError as e:
-        print(f"Error: {e.reason}")
+    # Send the request and read the response
+    with urllib.request.urlopen(req) as response:
+        content = response.read()
+        # Print the response content after decoding it from utf-8
+        print("{}".format(content.decode("utf-8")))
