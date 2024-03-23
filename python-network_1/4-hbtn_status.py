@@ -9,7 +9,7 @@ import requests
 
 if __name__ == '__main__':
     # Send an HTTP GET request to the specified URL
-    response = requests.get("https://intranet.hbtn.io/status")
+    response = requests.get('https://intranet.hbtn.io/status')
 
     # Print details about the response body
     print("Body response:")
