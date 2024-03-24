@@ -1,41 +1,25 @@
 #!/usr/bin/python3
-
-import requests
+"""
+Lists the 10 most recent commits on a given GitHub repository.
+Usage: ./100-github_commits.py <repository name> <repository owner>
+"""
 import sys
+import requests
 
-def list_commits(repo_name, owner_name):
-    """
-    Retrieves and lists the most recent commits from a specified GitHub repository.
+if __name__ == "__main__":
+    # Construct the GitHub API URL for commits
+    url = "https://api.github.com/repos/{}/{}/commits".format(
+        sys.argv[2], sys.argv[1])
 
-    Args:
-        repo_name (str): The name of the repository.
-        owner_name (str): The owner (user or organization) of the repository.
+    # Send an HTTP GET request to the GitHub API
+    r = requests.get(url)
+    commits = r.json()
 
-    Returns:
-        None: Prints commit information in the format: "<sha>: <author name>".
-    """
-    # Construct the API URL
-    api_url = f"https://api.github.com/repos/{owner_name}/{repo_name}/commits"
-    
-    # Send the request to the GitHub API
-    response = requests.get(api_url)
-    
-    # Check if the request was successful
-    if response.status_code == 200:
-        # Parse the JSON response
-        commits = response.json()
-        
-        # Iterate over the first 10 commits and print them
-        for commit in commits[:10]:
-            sha = commit.get('sha')
-            author_name = commit.get('commit').get('author').get('name')
-            print(f"{sha}: {author_name}")
-    else:
-        print(f"Failed to retrieve commits. Status code: {response.status_code}")
-
-# Take the repository name and owner name from command line arguments
-repo_name = sys.argv[1]
-owner_name = sys.argv[2]
-
-# Call the function with the provided arguments
-list_commits(repo_name, owner_name)
+    try:
+        # Iterate over the first 10 commits and print commit information
+        for i in range(10):
+            sha = commits[i].get("sha")
+            author_name = commits[i].get("commit").get("author").get("name")
+            print("{}: {}".format(sha, author_name))
+    except IndexError:
+        pass
