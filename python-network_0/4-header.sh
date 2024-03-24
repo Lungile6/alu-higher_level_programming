@@ -1,3 +1,3 @@
 #!/bin/bash
 # Send a GET request to the specified URL with a custom header and display the body of the reponse.
-curl -sGH "X-HolbertonSchool-User-Id: 98" "$1"
+curl -sG "$1" -H "X-HolbertonSchool-User-Id: 98" || echo "Error: cURL request failed"
