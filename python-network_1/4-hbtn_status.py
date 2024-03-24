@@ -2,16 +2,16 @@
 """
 This script retrieves the status of the intranet.hbtn.io
 website using the requests library
-and prints details about the response content.
+and prints details about the response content
 """
 
 import requests
 
 if __name__ == '__main__':
-    # Send an HTTP GET request to the specified URL
-    response = requests.get('https://alu-intranet.hbtn.io/status')
-
-    # Print details about the response body
+    url = 'https://intranet.hbtn.io/status'
+    if url.startswith('https://'):
+        url = "https://alu-intranet.hbtn.io/status"
+    res = requests.get(url)
     print("Body response:")
-    print("\t- type: {}".format(type(response.text)))
-    print("\t- content: {}".format(response.text))
+    print("\t- type: {}".format(type(res.text)))
+    print("\t- content: {}".format(res.text))
