@@ -1,3 +1,5 @@
+#!/usr/bin/pythonm3
+
 import requests
 import sys
 
