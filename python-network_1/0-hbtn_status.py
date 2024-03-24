@@ -9,7 +9,7 @@ import urllib.request
 
 if __name__ == '__main__':
     # The URL of the intranet.hbtn.io website to check its status
-    url = 'https://intranet.hbtn.io/status'
+    url = 'https://alu-intranet.hbtn.io/status'
 
     # Send a request to the URL and read the response
     with urllib.request.urlopen(url) as response:
