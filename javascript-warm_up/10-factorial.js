@@ -13,5 +13,5 @@ if (!isNaN(arg)) {
   const result = factorial(arg);
   console.log(result);
 } else {
-  console.log('Factorial of NaN is 1');
+  console.log('1');
 }
